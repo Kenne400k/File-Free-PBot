@@ -12,6 +12,11 @@ const moment = require("moment-timezone");
 const CACHE_SUFFIX = ".sync-cache.json";
 const IGNORED_FILE = ".sync-ignore-list.json"; // file chứa danh sách file không hỏi nữa
 
+process.on('SIGINT', () => {
+  console.log(chalk.redBright('\n[EXIT] Đang dừng chương trình...'));
+  process.exit();
+});
+
 // Đọc cache các file từng có ở local
 function readCache(cacheFile) {
   if (!fs.existsSync(cacheFile)) return [];
